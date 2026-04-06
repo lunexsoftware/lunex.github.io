@@ -5,10 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lunex Hub</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com">
-  window.addEventListener('DOMContentLoaded', () => {
-    setLang('en');
-  });
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    setLang('en')
   </script>
 </head>
 <body class="bg-gray-900 text-white font-[Montserrat]">
@@ -121,6 +120,8 @@ function setLang(lang) {
   document.getElementById('disclaimer').innerText = translations[lang].disclaimer;
   document.getElementById('toast').innerText = translations[lang].copied;
 }
+
+  setLang('en')
 </script>
 
 </body>
