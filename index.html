@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,6 +15,10 @@
   <button onclick="setLang('en')">EN</button>
 </div>
 
+<footer class="text-center text-gray-500 pb-10" id="disclaimer">
+  Discord: https://discord.gg/9dcp88WKUA
+</footer>
+
 <!-- Hero -->
 <section class="text-center py-20 px-4">
   <h1 id="title" class="text-4xl md:text-6xl font-bold mb-4">Roblox Scripts | Lunex Hub</h1>
@@ -28,10 +32,10 @@
   <div class="bg-gray-800 p-6 rounded-2xl shadow-lg">
     <h2 class="text-2xl font-semibold mb-2">Murder Mystery 2</h2>
     <p id="mm2_desc" class="text-gray-400 mb-4">
-      AutoFarm — автоматический фарм монет и очков...
+      Auto Farm — автоматический фарм монет
     </p>
     <div class="bg-gray-900 p-3 rounded-lg text-sm mb-3 break-all" id="mm2_code">
-      loadstring(game:HttpGet("https://pastebin.com/raw/exampleMM2"))()
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/lunexsoftware/scripts/refs/heads/main/MM2AutoFarm"))()
     </div>
     <button onclick="copyText('mm2_code')" class="bg-blue-600 px-4 py-2 rounded-lg hover:bg-blue-500">
       <span id="copy1">Копировать loadstring</span>
@@ -41,23 +45,31 @@
   <!-- Adopt -->
   <div class="bg-gray-800 p-6 rounded-2xl shadow-lg">
     <h2 class="text-2xl font-semibold mb-2">Adopt Me</h2>
-    <p id="adopt_desc" class="text-gray-400 mb-4">
-      Pet Spawner — спавн любого питомца...
+
+    <!-- Script 1 -->
+    <p id="adopt_desc_1" class="text-gray-400 mb-2">
+      Pet Spawner — спавн любого питомца (FR, NFR, MFR)
     </p>
-    <div class="bg-gray-900 p-3 rounded-lg text-sm mb-3 break-all" id="adopt_code">
-      loadstring(game:HttpGet("https://pastebin.com/raw/exampleAdopt"))()
+    <div class="bg-gray-900 p-3 rounded-lg text-sm mb-2 break-all" id="adopt_code_1">
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/lunexsoftware/scripts/refs/heads/main/AdmPetSpawner"))()
     </div>
-    <button onclick="copyText('adopt_code')" class="bg-blue-600 px-4 py-2 rounded-lg hover:bg-blue-500">
+    <button onclick="copyText('adopt_code_1')" class="bg-blue-600 px-4 py-2 rounded-lg hover:bg-blue-500 mb-4">
       <span id="copy2">Копировать loadstring</span>
+    </button>
+
+    <!-- Script 2 -->
+    <p id="adopt_desc_2" class="text-gray-400 mb-2">
+       House Changer — замена дома
+    </p>
+    <div class="bg-gray-900 p-3 rounded-lg text-sm mb-2 break-all" id="adopt_code_2">
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/lunexsoftware/scripts/refs/heads/main/AdmHouseChanger"))()
+    </div>
+    <button onclick="copyText('adopt_code_2')" class="bg-blue-600 px-4 py-2 rounded-lg hover:bg-blue-500">
+      <span id="copy3">Копировать loadstring</span>
     </button>
   </div>
 
 </section>
-
-<!-- Footer -->
-<footer class="text-center text-gray-500 pb-10" id="disclaimer">
-  Скрипты созданы в образовательных целях. Используйте на свой страх и риск.
-</footer>
 
 <!-- Toast -->
 <div id="toast" class="fixed bottom-5 right-5 bg-green-600 px-4 py-2 rounded-lg opacity-0 transition">
@@ -76,19 +88,21 @@ function copyText(id) {
 
 const translations = {
   ru: {
-    subtitle: "Рабочие скрипты для топовых игр. Loadstring внутри.",
-    mm2: "AutoFarm — автоматический фарм монет и очков. Скрипт сам находит ножи, собирает монеты и избегает убийцу. Работает в режиме AFK.",
-    adopt: "Pet Spawner — спавн любого питомца (включая легендарных и мега-неоновых). House Spawner — спавн домов и транспорта. Полный контроль над инвентарём.",
+    subtitle: "Рабочие скрипты для игр в roblox.",
+    mm2: "AutoFarm — автоматический фарм монет, exp",
+    adopt1: "Pet Spawner — спавн любого питомца (FR, NFR, MFR)",
+    adopt2: "House Changer — замена вашего дома",
     copy: "Копировать loadstring",
-    disclaimer: "Скрипты созданы в образовательных целях. Используйте на свой страх и риск.",
+    disclaimer: "Discord: https://discord.gg/9dcp88WKUA",
     copied: "Скопировано!"
   },
   en: {
-    subtitle: "Working scripts for top games. Loadstring included.",
-    mm2: "AutoFarm — automatically farms coins and points. The script finds knives, collects coins, and avoids the killer. Works in AFK mode.",
-    adopt: "Pet Spawner — spawn any pet (including legendary and mega neon). House Spawner — spawn houses and vehicles. Full inventory control.",
+    subtitle: "Working scripts for top games.",
+    mm2: "AutoFarm — automatically farms coins and points",
+    adopt1: "Pet Spawner — spawn any pet (FR, NFR, MFR)",
+    adopt2: "House Changer - Change the own house!",
     copy: "Copy loadstring",
-    disclaimer: "Scripts are for educational purposes only. Use at your own risk.",
+    disclaimer: "Discord: https://discord.gg/9dcp88WKUA",
     copied: "Copied!"
   }
 };
@@ -96,9 +110,11 @@ const translations = {
 function setLang(lang) {
   document.getElementById('subtitle').innerText = translations[lang].subtitle;
   document.getElementById('mm2_desc').innerText = translations[lang].mm2;
-  document.getElementById('adopt_desc').innerText = translations[lang].adopt;
+  document.getElementById('adopt_desc_1').innerText = translations[lang].adopt1;
+  document.getElementById('adopt_desc_2').innerText = translations[lang].adopt2;
   document.getElementById('copy1').innerText = translations[lang].copy;
   document.getElementById('copy2').innerText = translations[lang].copy;
+  document.getElementById('copy3').innerText = translations[lang].copy;
   document.getElementById('disclaimer').innerText = translations[lang].disclaimer;
   document.getElementById('toast').innerText = translations[lang].copied;
 }
