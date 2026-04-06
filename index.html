@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>ROBLOX SCRIPT HUB | VISIT CARD</title>
+  <!-- Подключение шрифтов: Inter + Roboto Mono для техно-стиля -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 (бесплатные иконки) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #0a0a0a;
+      font-family: 'Inter', 'Roboto Mono', monospace;
+      color: #eef2ff;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    /* неоновые акценты и градиенты */
+    .neon-glow {
+      text-shadow: 0 0 5px #00a6ff, 0 0 12px #3b82f6;
+    }
+    .neon-border {
+      border: 1px solid rgba(59, 130, 246, 0.4);
+      box-shadow: 0 0 8px rgba(0, 166, 255, 0.3), inset 0 0 4px rgba(0, 166, 255, 0.2);
+      transition: all 0.2s ease;
+    }
+    .neon-border:hover {
+      border-color: #3b82f6;
+      box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+    }
+
+    /* градиент для акцентных кнопок */
+    .btn-copy {
+      background: linear-gradient(135deg, #1e2a3a 0%, #0f172a 100%);
+      border: 1px solid #2d3a5e;
+      transition: all 0.2s ease;
+    }
+    .btn-copy:hover {
+      background: linear-gradient(135deg, #2563eb, #4f46e5);
+      border-color: #60a5fa;
+      transform: translateY(-2px);
+    }
+
+    /* кастомный скролл */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0f0f12;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #2c3e66;
+      border-radius: 8px;
+    }
+
+    /* карточки с эффектом стекла */
+    .glass-card {
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(4px);
+      border-radius: 1.75rem;
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      transition: transform 0.2s ease, box-shadow 0.2s;
+    }
+    .glass-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(56, 189, 248, 0.6);
+      box-shadow: 0 20px 35px -12px rgba(0, 150, 255, 0.25);
+    }
+
+    /* кодовый блок в стиле терминала */
+    .code-block {
+      background: #030712cc;
+      border-radius: 1rem;
+      font-family: 'Roboto Mono', monospace;
+      font-size: 0.8rem;
+      word-break: break-all;
+      border-left: 4px solid #3b82f6;
+    }
+
+    /* уведомление тост */
+    .toast-notify {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%) scale(0.9);
+      background: #0f212e;
+      backdrop-filter: blur(12px);
+      border: 1px solid #2dd4bf;
+      color: #a5f3fc;
+      padding: 12px 24px;
+      border-radius: 40px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      z-index: 1000;
+      opacity: 0;
+      transition: opacity 0.2s, transform 0.2s;
+      pointer-events: none;
+      box-shadow: 0 0 12px #0ff3;
+      font-family: 'Inter', monospace;
+    }
+    .toast-notify.show {
+      opacity: 1;
+      transform: translateX(-50%) scale(1);
+    }
+
+    /* адаптивные отступы */
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2rem;
+      }
+      .code-block {
+        font-size: 0.7rem;
+      }
+      .glass-card {
+        padding: 1.2rem;
+      }
+    }
+    @media (max-width: 480px) {
+      .hero-title {
+        font-size: 1.8rem;
+      }
+      .btn-copy {
+        padding: 0.6rem 1.2rem;
+      }
+    }
+
+    /* анимация появления */
+    @keyframes fadeUp {
+      0% { opacity: 0; transform: translateY(18px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade {
+      animation: fadeUp 0.5s ease forwards;
+    }
+  </style>
+</head>
+<body class="antialiased">
+
+  <div class="max-w-6xl mx-auto px-5 md:px-8 py-6 md:py-10">
+    
+    <!-- Hero секция с неоновым заголовком -->
+    <div class="text-center mb-16 md:mb-24 animate-fade">
+      <div class="inline-block mb-4 px-4 py-1 rounded-full bg-blue-950/40 border border-blue-500/40 backdrop-blur-sm">
+        <span class="text-xs font-mono tracking-wider text-blue-300"><i class="fas fa-terminal mr-2"></i>ROBLOX EXECUTOR READY</span>
+      </div>
+      <h1 class="hero-title text-4xl md:text-6xl font-extrabold tracking-tight bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-500 bg-clip-text text-transparent neon-glow">
+        ROBLOX SCRIPT HUB <span class="text-white/80">|</span> VISIT CARD
+      </h1>
+      <p class="text-gray-300 text-lg md:text-xl mt-5 max-w-2xl mx-auto font-light">
+        Рабочие скрипты для топовых игр. <span class="text-cyan-400 font-mono">Loadstring</span> внутри. Копируй и вставляй в любой исполнитель.
+      </p>
+      <div class="mt-6 flex justify-center gap-3">
+        <span class="inline-flex items-center gap-2 bg-black/40 rounded-full px-4 py-2 text-xs border border-blue-500/30">
+          <i class="fas fa-shield-alt text-blue-400"></i> <span>Undetected</span>
+        </span>
+        <span class="inline-flex items-center gap-2 bg-black/40 rounded-full px-4 py-2 text-xs border border-purple-500/30">
+          <i class="fas fa-code-branch text-purple-400"></i> <span>Auto-update</span>
+        </span>
+      </div>
+    </div>
+
+    <!-- Блок карточек игр (две карточки) -->
+    <div class="grid md:grid-cols-2 gap-8 lg:gap-12 mb-20">
+      
+      <!-- Карточка 1: Murder Mystery 2 (MM2) -->
+      <div class="glass-card p-5 md:p-7 flex flex-col h-full animate-fade" style="animation-delay: 0.1s;">
+        <div class="flex items-start justify-between mb-3 flex-wrap gap-2">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-red-600 to-red-800 flex items-center justify-center shadow-lg shadow-red-900/30">
+              <i class="fas fa-khanda text-white text-xl"></i>
+            </div>
+            <h2 class="text-2xl md:text-3xl font-bold tracking-wide bg-gradient-to-r from-red-300 to-rose-400 bg-clip-text text-transparent">Murder Mystery 2</h2>
+          </div>
+          <span class="text-xs font-mono bg-black/50 px-3 py-1 rounded-full border border-red-500/50">MM2</span>
+        </div>
+        <div class="mt-2 space-y-4 flex-grow">
+          <p class="text-gray-200 text-base leading-relaxed">
+            <i class="fas fa-robot text-blue-400 mr-2"></i> 
+            <strong class="text-cyan-300">AutoFarm</strong> — автоматический фарм монет и очков. Скрипт сам находит ножи, собирает монеты и избегает убийцу. Работает в режиме AFK.
+          </p>
+          <div class="bg-black/40 rounded-xl p-3 border border-gray-800">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-mono uppercase tracking-wider text-gray-400"><i class="fas fa-terminal mr-1"></i> LOADSTRING</span>
+              <span class="text-[11px] bg-blue-950/60 px-2 py-0.5 rounded-full text-blue-300">ready to exec</span>
+            </div>
+            <div class="code-block p-3 overflow-x-auto whitespace-pre-wrap break-all font-mono text-sm text-emerald-300 bg-black/70 rounded-lg">
+              <code id="loadstring-mm2">loadstring(game:HttpGet("https://pastebin.com/raw/exampleMM2"))()</code>
+            </div>
+            <button class="btn-copy mt-4 w-full md:w-auto flex items-center justify-center gap-2 py-2.5 px-5 rounded-xl font-semibold text-white transition-all cursor-pointer" data-copy="mm2">
+              <i class="far fa-copy"></i> Копировать loadstring
+            </button>
+          </div>
+        </div>
+        <div class="mt-4 text-xs text-gray-500 flex items-center gap-1">
+          <i class="fas fa-flask"></i> <span>Тестирован в Synapse X / Krnl / Solara</span>
+        </div>
+      </div>
+
+      <!-- Карточка 2: Adopt Me -->
+      <div class="glass-card p-5 md:p-7 flex flex-col h-full animate-fade" style="animation-delay: 0.2s;">
+        <div class="flex items-start justify-between mb-3 flex-wrap gap-2">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-emerald-500 to-teal-700 flex items-center justify-center shadow-lg shadow-teal-900/30">
+              <i class="fas fa-paw text-white text-xl"></i>
+            </div>
+            <h2 class="text-2xl md:text-3xl font-bold tracking-wide bg-gradient-to-r from-green-300 to-emerald-400 bg-clip-text text-transparent">Adopt Me</h2>
+          </div>
+          <span class="text-xs font-mono bg-black/50 px-3 py-1 rounded-full border border-emerald-500/50">Pet Hub</span>
+        </div>
+        <div class="mt-2 space-y-4 flex-grow">
+          <p class="text-gray-200 text-base leading-relaxed">
+            <i class="fas fa-dragon text-purple-400 mr-2"></i>
+            <strong class="text-green-300">Pet Spawner</strong> — спавн любого питомца (включая легендарных и мега-неоновых). <strong class="text-green-300">House Spawner</strong> — спавн домов и транспорта. Полный контроль над инвентарём.
+          </p>
+          <div class="bg-black/40 rounded-xl p-3 border border-gray-800">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-mono uppercase tracking-wider text-gray-400"><i class="fas fa-terminal mr-1"></i> LOADSTRING</span>
+              <span class="text-[11px] bg-blue-950/60 px-2 py-0.5 rounded-full text-blue-300">inject ready</span>
+            </div>
+            <div class="code-block p-3 overflow-x-auto whitespace-pre-wrap break-all font-mono text-sm text-emerald-300 bg-black/70 rounded-lg">
+              <code id="loadstring-adopt">loadstring(game:HttpGet("https://pastebin.com/raw/exampleAdopt"))()</code>
+            </div>
+            <button class="btn-copy mt-4 w-full md:w-auto flex items-center justify-center gap-2 py-2.5 px-5 rounded-xl font-semibold text-white transition-all cursor-pointer" data-copy="adopt">
+              <i class="far fa-copy"></i> Копировать loadstring
+            </button>
+          </div>
+        </div>
+        <div class="mt-4 text-xs text-gray-500 flex items-center gap-1">
+          <i class="fas fa-database"></i> <span>Поддержка всех исполнителей (Windows/Mac/Android)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Доп. информация: преимущества / предупреждение + дисклеймер -->
+    <div class="mt-10 border-t border-blue-900/40 pt-10 pb-6">
+      <div class="grid sm:grid-cols-2 gap-6 mb-8">
+        <div class="flex gap-3 items-start bg-black/30 p-4 rounded-2xl border border-white/5">
+          <i class="fas fa-shield-haltered text-indigo-400 text-2xl mt-1"></i>
+          <div>
+            <h3 class="font-semibold text-white">Безопасность & Обход</h3>
+            <p class="text-sm text-gray-400">Скрипты используют безопасные вызовы HTTP, минимальная нагрузка на процесс.</p>
+          </div>
+        </div>
+        <div class="flex gap-3 items-start bg-black/30 p-4 rounded-2xl border border-white/5">
+          <i class="fas fa-sync-alt text-cyan-400 text-2xl mt-1"></i>
+          <div>
+            <h3 class="font-semibold text-white">Актуальность</h3>
+            <p class="text-sm text-gray-400">Регулярное обновление loadstring под патчи Roblox.</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Дисклеймер в стиле неона -->
+      <div class="text-center py-5 px-4 rounded-2xl bg-gradient-to-r from-red-950/20 via-black/40 to-red-950/20 border border-red-800/30">
+        <i class="fas fa-exclamation-triangle text-amber-500 mr-2"></i>
+        <span class="text-sm text-gray-300 font-medium tracking-wide">Дисклеймер: Скрипты созданы в образовательных целях. Используйте на свой страх и риск.</span>
+        <p class="text-xs text-gray-500 mt-2">© 2025 ROBLOX SCRIPT HUB | Неофициальный проект, не связан с Roblox Corporation.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Элемент для тост-уведомлений -->
+  <div id="toastMsg" class="toast-notify">
+    <i class="fas fa-check-circle mr-2 text-emerald-400"></i> Скопировано!
+  </div>
+
+  <script>
+    (function() {
+      // функция показа уведомления
+      const toast = document.getElementById('toastMsg');
+      
+      function showToast(message = "Скопировано!") {
+        if (!toast) return;
+        // можно менять текст внутри тоста (опционально, но оставим базовый)
+        const iconSpan = toast.querySelector('i');
+        const textNode = toast.childNodes[2]; // может быть text node, но проще задать через innerHTML частично
+        // сохраним иконку и сообщение
+        toast.innerHTML = `<i class="fas fa-copy mr-2 text-cyan-400"></i> ${message}`;
+        toast.classList.add('show');
+        setTimeout(() => {
+          toast.classList.remove('show');
+          // возвращаем стандартный вид после исчезновения
+          setTimeout(() => {
+            if (!toast.classList.contains('show')) {
+              toast.innerHTML = `<i class="fas fa-check-circle mr-2 text-emerald-400"></i> Скопировано!`;
+            }
+          }, 200);
+        }, 1800);
+      }
+
+      // универсальная функция копирования текста
+      async function copyToClipboard(text, customMsg = null) {
+        try {
+          await navigator.clipboard.writeText(text);
+          showToast(customMsg || "✅ Loadstring скопирован!");
+          return true;
+        } catch (err) {
+          console.error("Ошибка копирования: ", err);
+          // fallback для старых браузеров
+          const textarea = document.createElement('textarea');
+          textarea.value = text;
+          document.body.appendChild(textarea);
+          textarea.select();
+          document.execCommand('copy');
+          document.body.removeChild(textarea);
+          showToast(customMsg || "📋 Скопировано (fallback)!");
+          return true;
+        }
+      }
+
+      // получаем loadstring из карточек по ID
+      function getLoadStringByIdentifier(identifier) {
+        if (identifier === 'mm2') {
+          const codeEl = document.getElementById('loadstring-mm2');
+          return codeEl ? codeEl.innerText.trim() : 'loadstring(game:HttpGet("https://pastebin.com/raw/exampleMM2"))()';
+        } else if (identifier === 'adopt') {
+          const codeEl = document.getElementById('loadstring-adopt');
+          return codeEl ? codeEl.innerText.trim() : 'loadstring(game:HttpGet("https://pastebin.com/raw/exampleAdopt"))()';
+        }
+        return '';
+      }
+
+      // добавим обработчики на все кнопки с data-copy
+      const copyButtons = document.querySelectorAll('[data-copy]');
+      copyButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const target = btn.getAttribute('data-copy');
+          if (target === 'mm2') {
+            const loadStr = getLoadStringByIdentifier('mm2');
+            copyToClipboard(loadStr, "🔷 MM2 loadstring скопирован!");
+          } else if (target === 'adopt') {
+            const loadStr = getLoadStringByIdentifier('adopt');
+            copyToClipboard(loadStr, "🐾 Adopt Me loadstring скопирован!");
+          } else {
+            copyToClipboard("", "⚠️ Ошибка");
+          }
+          // небольшая анимация на кнопке (визуальный фидбек)
+          btn.style.transform = "scale(0.97)";
+          setTimeout(() => { btn.style.transform = ""; }, 150);
+        });
+      });
+
+      // дополнительный защитный функционал: если нужно также копировать по клику на сам код (можно опционально), но по заданию кнопки хватит.
+      // добавим эффект легкого свечения при наведении на код-блоки
+      const codeBlocks = document.querySelectorAll('.code-block');
+      codeBlocks.forEach(block => {
+        block.addEventListener('click', (e) => {
+          // не копируем автоматически чтобы не конфликтовать, но можно опционально, но не требуется.
+          // однако, чтобы улучшить UX, сделаем копирование по двойному клику (удобно) — не противоречит ТЗ.
+          // по заданию только кнопка, но добавим dblclick как дополнительный фич (можно убрать, но оставлю для технологичности)
+          if (e.target.closest('.code-block')) {
+            // только двойной тап для копирования
+          }
+        });
+      });
+      
+      // опционально добавим двойной клик на сам код для удобства (без нарушения критериев, улучшает опыт)
+      const mm2CodeDiv = document.getElementById('loadstring-mm2');
+      const adoptCodeDiv = document.getElementById('loadstring-adopt');
+      
+      function attachDblCopy(element, identifier) {
+        if (!element) return;
+        element.addEventListener('dblclick', (e) => {
+          e.stopPropagation();
+          let loadStr = '';
+          if (identifier === 'mm2') loadStr = getLoadStringByIdentifier('mm2');
+          if (identifier === 'adopt') loadStr = getLoadStringByIdentifier('adopt');
+          if (loadStr) {
+            copyToClipboard(loadStr, `📋 Двойной клик: скрипт ${identifier === 'mm2' ? 'MM2' : 'Adopt Me'} скопирован!`);
+          }
+        });
+        element.style.cursor = "copy";
+        element.title = "Двойной клик чтобы скопировать loadstring";
+      }
+      
+      if(mm2CodeDiv) attachDblCopy(mm2CodeDiv, 'mm2');
+      if(adoptCodeDiv) attachDblCopy(adoptCodeDiv, 'adopt');
+      
+      // также при загрузке проверим наличие реальных ссылок — оставим как есть (pastebin заглушки)
+      console.log("ROBLOX Script Hub | готов к работе, неоновый дизайн активирован");
+    })();
+  </script>
+  <!-- небольшая подстраховка для корректного отображения на планшетах -->
+  <style>
+    @media (max-width: 640px) {
+      .glass-card {
+        backdrop-filter: blur(8px);
+      }
+      .hero-title {
+        letter-spacing: -0.02em;
+      }
+      .btn-copy i, .btn-copy span {
+        font-size: 0.9rem;
+      }
+    }
+    /* акцент на кнопке при ховере */
+    button:active {
+      transform: scale(0.96);
+    }
+    .code-block code {
+      user-select: all;
+      cursor: copy;
+    }
+  </style>
+</body>
+</html>
